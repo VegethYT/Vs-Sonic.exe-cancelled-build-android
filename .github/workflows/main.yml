@@ -83,5 +83,5 @@ jobs:
       - name: Publish Artifact
         uses: actions/upload-artifact@v3.0.0
         with:
-          name: androidBuild
+          name: sonic.exe cancelled build :(
           path: export/release/android/bin/app/build/outputs/apk/debug
