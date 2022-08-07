@@ -102,19 +102,15 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...boxArray.length)
 		{
-				var box:FlxSprite = new FlxSprite(0, i * 1080).loadGraphic(Paths.image('FreeBox'));
+				var box:FreeplayItem = new FreeplayItem(-20, 200, 'FreeBox');
 				box.ID = i;
 				grpSongs.add(box);
 
-				var char:FlxSprite = new FlxSprite(0, i * 1080).loadGraphic(Paths.image('fpstuff/' + boxArray[i]));
+				var char:FlxSprite = new FreeplayItem(-20, 200, 'fpstuff/' + boxArray[i]);
 				char.ID = i;
 				grpSongs.add(char);
-
-			// songText.x += 40;
-			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
-			// songText.screenCenter(X);
 		}
-			changeSelection();
+			//changeSelection();
 
 		var swag:Alphabet = new Alphabet(1, 0, "swag");
 
@@ -122,6 +118,7 @@ class FreeplayState extends MusicBeatState
 			songsText.setFormat(Paths.font('sonic-cd-menu-font.ttf'), 32);
 			songsText.text = songArray[curSelected];
 			songsText.setPosition(900, 500);
+			add(songText);
 
 		// JUST DOIN THIS SHIT FOR TESTING!!!
 		/* 
@@ -142,7 +139,7 @@ class FreeplayState extends MusicBeatState
 		changeSelection();
 
 		#if android
-		addVirtualPad(LEFT_RIGHT, A_B);
+		addVirtualPad(UP_DOWN, A_B);
 		#end
 
 		super.create();
@@ -173,7 +170,7 @@ class FreeplayState extends MusicBeatState
 
 		var shiftMult:Int = 1;
 
-		if(boxArray.length > 1)
+		if(songArray.length > 1)
 		{
 			if (upP)
 			{
@@ -214,19 +211,22 @@ class FreeplayState extends MusicBeatState
 				switch(curSelected)
 				{
 					case 0:
-						PlayState.SONG = Song.loadFromJson('milk', 'milk-hard');
-					case 1:
 						PlayState.SONG = Song.loadFromJson('endless', 'endless-hard');
-					case 2:
+					case 1:
 						PlayState.SONG = Song.loadFromJson('endless-og', 'endless-og-hard');
-					case 3:
+					case 2:
 						PlayState.SONG = Song.loadFromJson('cycles', 'cycles-hard');
+					case 3:
+						PlayState.SONG = Song.loadFromJson('milk', 'milk-hard');
 					case 4:
 						PlayState.SONG = Song.loadFromJson('sunshine', 'sunshine-hard');
 					case 5:
 						PlayState.SONG = Song.loadFromJson('soulless', 'soulless-hard');
 					case 6:
 						PlayState.SONG = Song.loadFromJson('prey', 'Prey-hard');
+					case 7:
+						PlayState.SONG = Song.loadFromJson('fight-or-flight', 'fight-or-flight-hard');
+
 				}
 				
 				
@@ -286,8 +286,8 @@ class FreeplayState extends MusicBeatState
 			curSelected += change;
 	
 			if (curSelected < 0)
-				curSelected = boxArray.length - 1;
-			if (curSelected >= boxArray.length)
+				curSelected = songArray.length - 1;
+			if (curSelected >= songArray.length)
 				curSelected = 0;
 
 		// selector.y = (70 * curSelected) + 30;
@@ -296,19 +296,16 @@ class FreeplayState extends MusicBeatState
 
 		for (item in grpSongs.members)
 		{
-			FlxTween.tween(item, {"scale.x": 1,"scale.y": 1}, 0.25);
+			FlxTween.tween(item, {"scale.x": 0.85,"scale.y": 0.85}, 0.25);
+			item.alpha = 0.45;
 			// item.setGraphicSize(Std.int(item.width * 0.8));
 
-			if (item.ID == curSelected)
+			if (item.targetY == 0)
 			{
 				item.alpha = 1;
 				//songslol = songs;
-				FlxTween.tween(item, {"scale.x": 1.5,"scale.y": 1.5}, 0.25);
+				FlxTween.tween(item, {"scale.x": 1,"scale.y": 1}, 0.25);
 				// item.setGraphicSize(Std.int(item.width));
-			}
-			else
-			{
-				item.alpha = 0.45;
 			}
 
 			if (change == 1) 
