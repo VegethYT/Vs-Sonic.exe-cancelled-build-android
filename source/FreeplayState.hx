@@ -94,7 +94,7 @@ class FreeplayState extends MusicBeatState
 		add(sideBars);
 		sideBars.screenCenter();
 
-		grpSongs = new FlxTypedGroup<FlxSprite>();
+		grpSongs = new FlxTypedGroup<FreeplayItem>();
 		add(grpSongs);
 
 		grptxtsongs = new FlxTypedGroup<FlxText>();
@@ -106,7 +106,7 @@ class FreeplayState extends MusicBeatState
 				box.ID = i;
 				grpSongs.add(box);
 
-				var char:FlxSprite = new FreeplayItem(-20, 200, 'fpstuff/' + boxArray[i]);
+				var char:FreeplayItem = new FreeplayItem(-20, 200, 'fpstuff/' + boxArray[i]);
 				char.ID = i;
 				grpSongs.add(char);
 		}
@@ -118,7 +118,7 @@ class FreeplayState extends MusicBeatState
 			songsText.setFormat(Paths.font('sonic-cd-menu-font.ttf'), 32);
 			songsText.text = songArray[curSelected];
 			songsText.setPosition(900, 500);
-			add(songText);
+			add(songsText);
 
 		// JUST DOIN THIS SHIT FOR TESTING!!!
 		/* 
