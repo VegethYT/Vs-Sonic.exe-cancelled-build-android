@@ -110,6 +110,8 @@ class FreeplayState extends MusicBeatState
 
 				var char:FreeplayItem = new FreeplayItem(-20, 200, 'fpstuff/' + boxArray[i]);
 				char.ID = i;
+				char.y += ((char.width - 450) + 40);
+				char.setGraphicSize(Std.int(char.width * 0.5));
 				grpSongs.add(char);
 		}
 			//changeSelection();
