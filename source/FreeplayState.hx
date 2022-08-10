@@ -171,7 +171,7 @@ class FreeplayState extends MusicBeatState
 			case 'prey':
 				song = 'Prey';
 		}
-		PlayState.SONG = SONG.loadFromJson(songJson, song);
+		PlayState.SONG = Song.loadFromJson(songJson, song);
 		LoadingState.loadAndSwitchState(new PlayState());
 	}
 
