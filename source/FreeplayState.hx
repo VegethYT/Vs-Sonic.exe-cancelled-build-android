@@ -208,7 +208,7 @@ class FreeplayState extends MusicBeatState
 			else if (accepted)
 			{
 				persistentUpdate = false;
-				songSlct:String = songArray[curSelected];
+				var songSlct:String = songArray[curSelected];
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				PlayState.SONG = Song.loadFromJson(songSlct, songSlct + '-hard');
 				
