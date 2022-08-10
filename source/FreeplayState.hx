@@ -164,14 +164,14 @@ class FreeplayState extends MusicBeatState
 	function goToSong(){
 		// as estruturas do string
 		var song:String = songArray[1][curSelected];
-		var song2:String = songArray[1][curSelected]; 
+		//var song2:String = song; 
 		var diff:String = '-hard';
-		var songSlct:String = song2 + diff;
+		var songJson:String = song + diff;
 		switch(song2){
 			case 'prey':
-				song2 = 'Prey';
+				song = 'Prey';
 		}
-		PlayState.SONG = SONG.loadFromJson(song, songSlct)
+		PlayState.SONG = SONG.loadFromJson(songJson, song);
 		LoadingState.loadAndSwitchState(new PlayState());
 	}
 
