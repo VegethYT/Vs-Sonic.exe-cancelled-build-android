@@ -28,7 +28,7 @@ using StringTools;
 
 class FreeplayState extends MusicBeatState
 {
-	var boxArray:Array<String> = [
+	/*var boxArray:Array<String> = [
 		'majin',
 		'majin',
 		'lord x',
@@ -37,15 +37,15 @@ class FreeplayState extends MusicBeatState
 		'tails doll',
 		'starved',
 		'starved'
-	];
+	];*/
 	// im fucking genious :ocaramaisinteligentedomundo:
-	/*var songArray:Array<Array<Array<String>>> = [ // o nome da caixa, (entre colchetes) as musica
+	var songsArray:Array<Array<Array<String>>> = [ // o nome da caixa, (entre colchetes) as musica
 		['endless', ['endless', 'endless-og']],
 		['lord x', ['cycles']],
 		['sunky', ['milk']],
 		['tails doll', ['sunshine', 'soulless']],
 		['starved', ['prey', 'fight-or-flight']]
-	];*/ // i dont ill use this for now
+	]; // i dont ill use this for now
 	//boxArray.push(songArray);
 
 	var selector:FlxText;
@@ -98,7 +98,7 @@ class FreeplayState extends MusicBeatState
 		grptxtsongs = new FlxTypedGroup<FlxText>();
 		add(grptxtsongs);
 		
-		for (i in 0...boxArray.length)
+		for (i in 0...songArray[0].length)
 		{
 				var box:FreeplayItem = new FreeplayItem(-100, 200, 'FreeBox');
 				//box.ID = i;
@@ -106,7 +106,7 @@ class FreeplayState extends MusicBeatState
 				box.setGraphicSize(Std.int(box.width * 0.89));
 				grpSongs.add(box);
 		
-				var char:FreeplayItem = new FreeplayItem(-100, 200, 'fpstuff/' + boxArray[i]);
+				var char:FreeplayItem = new FreeplayItem(-300, 200, 'fpstuff/' + songArray[0][i]);
 				//char.ID = i;
 				char.y += (char.width - 450) + 40;
 				char.setGraphicSize(Std.int(char.width * 0.89));
@@ -116,11 +116,18 @@ class FreeplayState extends MusicBeatState
 		
 		var swag:Alphabet = new Alphabet(1, 0, "swag");
 		
+		grptxtsongs = new FlxTypedGroup<FlxText>();
+		add(grptxtsongs);
+
+		for (i in 0...songArray[1].length){
 			var songsText:FlxText = new FlxText(0, 0, 0, "", 32);
 			songsText.setFormat(Paths.font('sonic-cd-menu-font.ttf'), 32);
-			songsText.text = songArray[curSelected];
+			songsText.text = songArray[1][i];
 			songsText.setPosition(900, 500);
+			songsText.y = (i * 10) + 20;
+			songsText.ID = i;
 			add(songsText);
+		}
 		
 		// JUST DOIN THIS SHIT FOR TESTING!!!
 		/* 
@@ -139,9 +146,10 @@ class FreeplayState extends MusicBeatState
 			trace(md);
 		 */
 		changeSelection();
-		
+		changeSong();
+
 		#if android
-		addVirtualPad(UP_DOWN, A_B);
+		addVirtualPad(FULL, A_B);
 		#end
 		
 		super.create();
@@ -151,6 +159,20 @@ class FreeplayState extends MusicBeatState
 		changeSelection(0, false);
 		persistentUpdate = true;
 		super.closeSubState();
+	}
+
+	function goToSong(){
+		// as estruturas do string
+		var song:String = songArray[1][curSelected];
+		var song2:String = songArray[1][curSelected]; 
+		var diff:String = '-hard';
+		var songSlct:String = song2 + diff;
+		switch(song2){
+			case 'prey':
+				song2 = 'Prey';
+		}
+		PlayState.SONG = SONG.loadFromJson(song, songSlct)
+		LoadingState.loadAndSwitchState(new PlayState());
 	}
 
 	var songslol:String = "";
@@ -166,6 +188,8 @@ class FreeplayState extends MusicBeatState
 		
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
+		var leftP = controls.UI_LEFT_P;
+		var rightP = controls.UI_RIGHT_P;
 		var accepted = controls.ACCEPT;
 		var space = FlxG.keys.justPressed.SPACE #if android || _virtualpad.buttonX.justPressed #end;
 		var ctrl = FlxG.keys.justPressed.CONTROL #if android || _virtualpad.buttonC.justPressed #end;
@@ -176,12 +200,22 @@ class FreeplayState extends MusicBeatState
 		{
 			if (upP)
 			{
-				changeSelection(-shiftMult);
+				if(boxslct){
+					changeSelection(-shiftMult);
+				}
+				if(songslct){
+					changeSong(-shiftMult);
+				}
 				holdTime = 0;
 			}
 			if (downP)
 			{
-				changeSelection(shiftMult);
+				if(boxslct){
+					changeSelection(shiftMult);
+				}
+				if(songSlct){
+					changeSong(shiftMult);
+				}
 				holdTime = 0;
 			}
 		
@@ -197,22 +231,29 @@ class FreeplayState extends MusicBeatState
 					//changeDiff();
 				}
 			}
-		}
 		
 		if (controls.BACK)
 		{
 			persistentUpdate = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
-			MusicBeatState.switchState(new MainMenuState());
+			if(boxslct){
+				MusicBeatState.switchState(new MainMenuState());
+			}
+			if(songslct){
+				boxslct = true;
+				songslct = false;
+			}
+			FlxG.log.add('lmao');
 		}
 			else if (accepted)
 			{
+				if(boxslct){
+					songslct = true;
+					boxslct = false;
+				}
 				persistentUpdate = false;
-				var songSlct:String = songArray[curSelected];
 				FlxG.sound.play(Paths.sound('confirmMenu'));
-				PlayState.SONG = Song.loadFromJson(songSlct, songSlct + '-hard');
-				
-					
+
 					/*#if MODS_ALLOWED
 					if(!sys.FileSystem.exists(Paths.modsJson(songLowercase + '/' + poop)) && !sys.FileSystem.exists(Paths.json(songLowercase + '/' + poop))) {
 					#else
@@ -227,12 +268,12 @@ class FreeplayState extends MusicBeatState
 					
 					if (FlxG.keys.pressed.SHIFT #if android || _virtualpad.buttonZ.pressed #end){
 						LoadingState.loadAndSwitchState(new ChartingState());
-					}else{
-						LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.sound.music.volume = 0;
+					}else if (songslct){
+						goToSong();
+						FlxG.sound.music.volume = 0;
 					}
-		
-					FlxG.sound.music.volume = 0;
-				}
+			}
 			else if(space)
 			{
 				if(instPlaying != curSelected)
@@ -265,13 +306,15 @@ class FreeplayState extends MusicBeatState
 	}
 	function changeSelection(change:Int = 0, playSound:Bool = true)
 	{
+		if(boxslct){
 			if(playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 			curSelected += change;
 	
 			if (curSelected < 0)
-				curSelected = songArray.length - 1;
+				curSelected = songArray[0].length - 1;
 			if (curSelected >= songArray.length)
 				curSelected = 0;
+		}
 
 		// selector.y = (70 * curSelected) + 30;
 
@@ -289,6 +332,23 @@ class FreeplayState extends MusicBeatState
 				//songslol = songs;
 				FlxTween.tween(item, {"scale.x": 1,"scale.y": 1}, 0.35);
 				// item.setGraphicSize(Std.int(item.width));
+			}
+		}
+	}
+	function changeSong(change:Int = 0)
+	{
+		if(songSlct){
+			curSelected += change;
+			if (curSelected > 0) curSelected = songArray[1].length - 1;
+			if (curSelected >= songArray[1].length) curSelected = 0;
+		}
+		for(item in grptxtsongs.members) // easy lmao
+		{
+			if (curSelected != item.ID){
+				item.alpha = 0.5;
+			}
+			else{
+				item.alpha = 1;
 			}
 		}
 	}
