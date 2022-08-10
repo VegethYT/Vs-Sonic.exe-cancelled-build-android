@@ -38,16 +38,14 @@ class FreeplayState extends MusicBeatState
 		'starved',
 		'starved'
 	];
-	var songArray:Array<String> = [
-		'endless',
-		'endless-og',
-		'cycles',
-		'milk',
-		'sunshine',
-		'soulless',
-		'prey',
-		'fight-or-flight'
-	];
+	// im fucking genious :ocaramaisinteligentedomundo:
+	/*var songArray:Array<Array<Array<String>>> = [ // o nome da caixa, (entre colchetes) as musica
+		['endless', ['endless', 'endless-og']],
+		['lord x', ['cycles']],
+		['sunky', ['milk']],
+		['tails doll', ['sunshine', 'soulless']],
+		['starved', ['prey', 'fight-or-flight']]
+	];*/ // i dont ill use this for now
 	//boxArray.push(songArray);
 
 	var selector:FlxText;
