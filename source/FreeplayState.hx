@@ -39,7 +39,7 @@ class FreeplayState extends MusicBeatState
 		'starved'
 	];*/
 	// im fucking genious :ocaramaisinteligentedomundo:
-	var songsArray:Array<Array<Array<String>>> = [ // o nome da caixa, (entre colchetes) as musica
+	var songArray:Array<Dynamic> = [ // o nome da caixa, (entre colchetes) as musica
 		['endless', ['endless', 'endless-og']],
 		['lord x', ['cycles']],
 		['sunky', ['milk']],
@@ -167,7 +167,7 @@ class FreeplayState extends MusicBeatState
 		//var song2:String = song; 
 		var diff:String = '-hard';
 		var songJson:String = song + diff;
-		switch(song2){
+		switch(song){
 			case 'prey':
 				song = 'Prey';
 		}
