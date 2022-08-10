@@ -102,7 +102,7 @@ class FreeplayState extends MusicBeatState
 		{
 				var box:FreeplayItem = new FreeplayItem(-100, 200, 'FreeBox');
 				//box.ID = i;
-				box.y += ((box.width - 450) + 40);
+				box.y += (box.width - 450) + 40;
 				box.setGraphicSize(Std.int(box.width * 0.89));
 				grpSongs.add(box);
 		
