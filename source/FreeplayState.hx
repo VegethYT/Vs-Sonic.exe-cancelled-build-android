@@ -213,7 +213,7 @@ class FreeplayState extends MusicBeatState
 				if(boxslct){
 					changeSelection(shiftMult);
 				}
-				if(songSlct){
+				if(songslct){
 					changeSong(shiftMult);
 				}
 				holdTime = 0;
@@ -337,7 +337,7 @@ class FreeplayState extends MusicBeatState
 	}
 	function changeSong(change:Int = 0)
 	{
-		if(songSlct){
+		if(songslct){
 			curSelected += change;
 			if (curSelected > 0) curSelected = songArray[1].length - 1;
 			if (curSelected >= songArray[1].length) curSelected = 0;
