@@ -311,8 +311,8 @@ class FreeplayState extends MusicBeatState
 			curSelected += change;
 	
 			if (curSelected < 0)
-				curSelected = songArray[0].length - 1;
-			if (curSelected >= songArray.length)
+				curSelected = grpSongs.length - 1;
+			if (curSelected >= grpSongs.length)
 				curSelected = 0;
 		}
 
@@ -339,8 +339,8 @@ class FreeplayState extends MusicBeatState
 	{
 		if(songslct){
 			curSelected += change;
-			if (curSelected > 0) curSelected = songArray[1].length - 1;
-			if (curSelected >= songArray[1].length) curSelected = 0;
+			if (curSelected > 0) curSelected = grptxtsongs.length - 1;
+			if (curSelected >= grptxtsongs.length) curSelected = 0;
 		}
 		for(item in grptxtsongs.members) // easy lmao
 		{
