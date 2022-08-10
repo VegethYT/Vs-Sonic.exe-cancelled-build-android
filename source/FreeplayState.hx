@@ -90,7 +90,7 @@ class FreeplayState extends MusicBeatState
 		
 		sideBars = new FlxBackdrop(Paths.image('sidebars'), 0.5, 0.5);
 		sideBars.antialiasing = false;
-		sideBars.velocity.set(0, 1200);
+		sideBars.velocity.set(0, 110);
 		add(sideBars);
 		sideBars.screenCenter();
 		
@@ -108,7 +108,7 @@ class FreeplayState extends MusicBeatState
 				box.setGraphicSize(Std.int(box.width * 0.89));
 				grpSongs.add(box);
 		
-				var char:FreeplayItem = new FreeplayItem(-100, 200, 'fpstuff/' + boxArray[i].toLowerCase());
+				var char:FreeplayItem = new FreeplayItem(-100, 200, 'fpstuff/' + boxArray[i];
 				//char.ID = i;
 				char.y += ((char.width - 450) + 40);
 				char.setGraphicSize(Std.int(char.width * 0.89));
@@ -160,7 +160,7 @@ class FreeplayState extends MusicBeatState
 	private static var vocals:FlxSound = null;
 	var holdTime:Float = 0;
 	override function update(elapsed:Float)
-		{
+	{
 		if (FlxG.sound.music.volume < 0.7)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
@@ -210,9 +210,9 @@ class FreeplayState extends MusicBeatState
 			else if (accepted)
 			{
 				persistentUpdate = false;
-				ok:String = songArray[curSelected].toLowerCase();
+				songSlct:String = songArray[curSelected];
 				FlxG.sound.play(Paths.sound('confirmMenu'));
-				PlayState.SONG = Song.loadFromJson(ok, ok + '-hard');
+				PlayState.SONG = Song.loadFromJson(songSlct, songSlct + '-hard');
 				
 					
 					/*#if MODS_ALLOWED
