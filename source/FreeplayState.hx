@@ -188,8 +188,8 @@ class FreeplayState extends MusicBeatState
 		
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
-		var leftP = controls.UI_LEFT_P;
-		var rightP = controls.UI_RIGHT_P;
+		var leftP = controls.UI_LEFT_P; // i dont will use it again lmao
+		var rightP = controls.UI_RIGHT_P; // this too
 		var accepted = controls.ACCEPT;
 		var space = FlxG.keys.justPressed.SPACE #if android || _virtualpad.buttonX.justPressed #end;
 		var ctrl = FlxG.keys.justPressed.CONTROL #if android || _virtualpad.buttonC.justPressed #end;
