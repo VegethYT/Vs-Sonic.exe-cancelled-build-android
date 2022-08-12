@@ -318,7 +318,6 @@ class FreeplayState extends MusicBeatState
 						cdman = true; 
 					}); 
 				}
-			}
 			if (accepted && cdman && !selecting) 
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'), 0.4); 
