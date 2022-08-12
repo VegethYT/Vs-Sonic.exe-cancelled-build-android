@@ -56,8 +56,9 @@ class FreeplayState extends MusicBeatState
 	var cdman:Bool = true;
 
 	var bg:FlxSprite;
+	var whiteshit:FlxSprite;
 	var sideBars:FlxBackdrop;
-		
+
 	override function create()
 	{
 		Paths.clearStoredMemory();
@@ -78,7 +79,10 @@ class FreeplayState extends MusicBeatState
 				addSong(songArray[0], 0, songArray[1], Std.parseInt(songArray[2]));
 			}
 		}*/
-		
+
+		whiteshit = new FlxSprite().makeGraphic(1280, 720, FlxColor.WHITE); 
+		whiteshit.alpha = 0; 
+
 		bg = new FlxSprite().loadGraphic(Paths.image('backgroundlool'));
 		bg.antialiasing = false;
 		bg.setGraphicSize(1280, 720);
@@ -205,6 +209,9 @@ class FreeplayState extends MusicBeatState
 		
 			trace(md);
 		 */
+
+		add(whiteshit);
+
 		changeSelection();
 		//changeSong();
 
