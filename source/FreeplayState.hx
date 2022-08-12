@@ -40,15 +40,15 @@ class FreeplayState extends MusicBeatState
 		'starved'
 	];*/
 	var charArray:Array<String>;
-	var charUnlocled:Array<String>;
+	var charUnlocked:Array<String>;
 	//boxArray.push(songArray);
 
 	var selector:FlxText;
 	private static var curSelected:Int = 0;
-	public static var curSongSelect:Int = 0;
+	public static var curSongSelected.:Int = 0;
 
 	private var boxgrp:FlxTypedSpriteGroup<FlxSprite>;
-	public var grptxt:FlxTypedGroup<FlxText>;
+	public var textgrp:FlxTypedGroup<FlxText>;
 	private var curPlaying:Bool = false;
 	var scoreText:FlxText;
 	var charText:FlxText;
@@ -95,7 +95,7 @@ class FreeplayState extends MusicBeatState
 		add(boxgrp);
 
 		textgrp = new FlxTypedGroup<FlxText>();
-		add(boxgrp);
+		add(textgrp);
 
 		charArray = CharSongList.characters;
 		charUnlocked = CharSongList.characters;
@@ -153,8 +153,8 @@ class FreeplayState extends MusicBeatState
 
 		var swag:Alphabet = new Alphabet(1, 0, "swag");
 
-		grptxtsongs = new FlxTypedGroup<FlxText>();
-		add(grptxtsongs);
+		textgrp = new FlxTypedGroup<FlxText>();
+		add(textgrp);
 
 		if (charUnlocked.contains(charArray[0])) charText = new FlxText(30 , 10, FlxG.width, "Majin"); 
 		else charText = new FlxText(30 , 10, FlxG.width, "???"); 
@@ -171,13 +171,12 @@ class FreeplayState extends MusicBeatState
 					var diff = curSelected - sprite.ID; 
 					trace(diff, sprite.ID, curSelected); 
 					FlxTween.tween(sprite, {alpha: 0.5}, 0.2); 
-					FlxTween.tween(sprite, {"scale.x": 1.25, y: 1.25}, 0.2, {ease: FlxEase.expoOut}); 
+					FlxTween.tween(sprite, {"scale.x": 1, "scale.y": 1}, 0.2, {ease: FlxEase.expoOut}); 
 				}
 				else 
 				{
 					FlxTween.tween(sprite, {alpha: 1}, 0.2); 
-					FlxTween.tween(sprite.scale, {x: 0.58, y: 0.58}, 0.2, {ease: FlxEase.expoOut}); 
-					FlxTween.tween(sprite.skew, {x: 0, y: 0}, 0.2, {ease: FlxEase.expoOut}); 
+					FlxTween.tween(sprite, {"scale.x": 1.25, "scale.y": 1.25}, 0.2, {ease: FlxEase.expoOut}); 
 				}
 			}); 
 			for (i in 0...CharSongList.getSongsByChar(charArray[curSelected]).length) 
