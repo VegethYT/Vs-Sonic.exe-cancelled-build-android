@@ -80,8 +80,8 @@ class FreeplayState extends MusicBeatState
 			}
 		}*/
 
-		whiteshit = new FlxSprite().makeGraphic(1280, 720, FlxColor.WHITE); 
-		whiteshit.alpha = 0; 
+		whiteshit = new FlxSprite().makeGraphic(1280, 720, FlxColor.WHITE); 
+		whiteshit.alpha = 0; 
 
 		bg = new FlxSprite().loadGraphic(Paths.image('backgroundlool'));
 		bg.antialiasing = false;
