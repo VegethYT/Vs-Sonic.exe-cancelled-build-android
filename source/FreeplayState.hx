@@ -399,7 +399,7 @@ class FreeplayState extends MusicBeatState
 					});
 				}
 				curSelected = curSelected + change;
-				boxgrp.forEach(function(sprite:FreeplayItem) 
+				boxgrp.forEach(function(sprite:FlxSprite) 
 				{
 					if (sprite.ID == curSelected) 
 					{
@@ -466,21 +466,6 @@ class FreeplayState extends MusicBeatState
 
 		// selector.y = (70 * curSelected) + 30;
 
-		var bullShit:Int = 0;
-
-		for (item in grpSongs.members)
-		{
-			FlxTween.tween(item, {"scale.x": 0.75,"scale.y": 0.75}, 0.35);
-			item.alpha = 0.45;
-			// item.setGraphicSize(Std.int(item.width * 0.8));
-
-			if (item.targetY == 0)
-			{
-				item.alpha = 1;
-				//songslol = songs;
-				FlxTween.tween(item, {"scale.x": 1,"scale.y": 1}, 0.35);
-				// item.setGraphicSize(Std.int(item.width));
-			}
-		}
+		var bullShit:Int = 0; //stupid shit
 	}
 }
