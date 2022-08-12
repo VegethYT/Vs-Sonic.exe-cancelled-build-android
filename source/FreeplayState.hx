@@ -45,7 +45,7 @@ class FreeplayState extends MusicBeatState
 
 	var selector:FlxText;
 	private static var curSelected:Int = 0;
-	public static var curSongSelected.:Int = 0;
+	public static var curSongSelected:Int = 0;
 
 	private var boxgrp:FlxTypedSpriteGroup<FlxSprite>;
 	public var textgrp:FlxTypedGroup<FlxText>;
