@@ -75,14 +75,14 @@ class FreeplayState extends MusicBeatState
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
 		for (i in 0...initSonglist.length)
 		{
-			if(initSonglist[i] != null && initSonglist[i].length > 0) {
+			if(initSonglist[i] != null && initSonglist[i].length > 0){
 				var songArray:Array<String> = initSonglist[i].split(":");
 				addSong(songArray[0], 0, songArray[1], Std.parseInt(songArray[2]));
 			}
 		}*/
 
-		whiteshit = new FlxSprite().makeGraphic(1280, 720, FlxColor.WHITE); 
-		whiteshit.alpha = 0; 
+		whiteshit = new FlxSprite().makeGraphic(1280, 720, FlxColor.WHITE);
+		whiteshit.alpha = 0;
 
 		bg = new FlxSprite().loadGraphic(Paths.image('backgroundlool'));
 		bg.antialiasing = false;
@@ -90,11 +90,12 @@ class FreeplayState extends MusicBeatState
 		add(bg);
 		bg.screenCenter();
 		
-		sideBars = new FlxBackdrop(Paths.image('sidebars'), 0, 1, false, true);
+		sideBars = new FlxBackdrop(Paths.image('sidebar'), 0, 1, false, true);
+		sidebars.velocity.y = 50;
 		add(sideBars);
 
-		var uhhdumbassline:FlxSprite = new FlxSprite(300).makeGraphic(10, 720, FlxColor.BLACK); 
-		add(uhhdumbassline); 
+		var uhhdumbassline:FlxSprite = new FlxSprite(300).makeGraphic(10, 720, FlxColor.BLACK);
+		add(uhhdumbassline);
 
 		boxgrp = new FlxTypedSpriteGroup<FlxSprite>();
 		add(boxgrp);
@@ -107,34 +108,34 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...charArray.length)
 		{
-			if (charArray.contains(charArray[i])) // Hey so this is uneeded but it's here lol. 
+			if (charArray.contains(charArray[i]))// Hey so this is uneeded but it's here lol. 
 			{
-				var box:FlxSprite = new FlxSprite(0, i * 415); 
-				box.loadGraphic(Paths.image('FreeBox')); 
-				boxgrp.add(box); 
-				box.ID = i; 
-				box.setGraphicSize(Std.int(box.width / 1.7)); 
+				var box:FlxSprite = new FlxSprite(0, i * 415);
+				box.loadGraphic(Paths.image('FreeBox'));
+				boxgrp.add(box);
+				box.ID = i;
+				box.setGraphicSize(Std.int(box.width / 1.7));
   
-				FlxG.log.add('searching for ' + 'assets/images/fpstuff/' + charArray[i].toLowerCase() + '.png'); 
+				FlxG.log.add('searching for ' + 'assets/images/fpstuff/' + charArray[i].toLowerCase()+ '.png');
   
-				if (charUnlocked.contains(charArray[i])) 
+				if (charUnlocked.contains(charArray[i]))
 				{
-					if (FileSystem.exists('assets/images/fpstuff/' + charArray[i].toLowerCase() + '.png')) 
+					if (FileSystem.exists('assets/images/fpstuff/' + charArray[i].toLowerCase()+ '.png'))
 					{
-						FlxG.log.add(charArray[i] + ' found'); 
-						var char:FlxSprite = new FlxSprite(0, i * 415); 
-						char.loadGraphic(Paths.image('fpstuff/' + charArray[i].toLowerCase())); 
-						boxgrp.add(char); 
-						char.ID = i; 
-						char.setGraphicSize(Std.int(box.width / 1.7)); 
+						FlxG.log.add(charArray[i] + ' found');
+						var char:FlxSprite = new FlxSprite(0, i * 415);
+						char.loadGraphic(Paths.image('fpstuff/' + charArray[i].toLowerCase()));
+						boxgrp.add(char);
+						char.ID = i;
+						char.setGraphicSize(Std.int(box.width / 1.7));
 					}
 					else 
 					{
-						var char:FlxSprite = new FlxSprite(0, i * 415); 
-						char.loadGraphic(Paths.image('fpstuff/placeholder')); 
-						boxgrp.add(char); 
-						char.ID = i; 
-						char.setGraphicSize(Std.int(box.width / 1.7)); 
+						var char:FlxSprite = new FlxSprite(0, i * 415);
+						char.loadGraphic(Paths.image('fpstuff/placeholder'));
+						boxgrp.add(char);
+						char.ID = i;
+						char.setGraphicSize(Std.int(box.width / 1.7));
 					}
 				}
 				else 
@@ -143,55 +144,55 @@ class FreeplayState extends MusicBeatState
 					char.loadGraphic(Paths.image('fpstuff/locked'));
 					boxgrp.add(char);
 					char.ID = i;
-					char.setGraphicSize(Std.int(box.width / 1.7)); 
+					char.setGraphicSize(Std.int(box.width / 1.7));
 				}
 			}
 		}
 
-		boxgrp.x = -335; 
+		boxgrp.x = -335;
 
-		scoreText = new FlxText(30, 105, FlxG.width, ""); 
-		scoreText.setFormat("Sonic CD Menu Font Regular", 18, FlxColor.WHITE, CENTER); 
-			scoreText.y -= 36; 
-			scoreText.x -= 20; 
-			add(scoreText); 
+		scoreText = new FlxText(30, 105, FlxG.width, "");
+		scoreText.setFormat("Sonic CD Menu Font Regular", 18, FlxColor.WHITE, CENTER);
+			scoreText.y -= 36;
+			scoreText.x -= 20;
+			add(scoreText);
 
 		var swag:Alphabet = new Alphabet(1, 0, "swag");
 
 		textgrp = new FlxTypedGroup<FlxText>();
 		add(textgrp);
 
-		if (charUnlocked.contains(charArray[0])) charText = new FlxText(30 , 10, FlxG.width, "Majin"); 
-		else charText = new FlxText(30 , 10, FlxG.width, "???"); 
-		charText.setFormat("Sonic CD Menu Font Regular", 36, FlxColor.WHITE, CENTER); 
-		charText.y -= 10; 
-		charText.x -= 23; 
+		if (charUnlocked.contains(charArray[0]))charText = new FlxText(30 , 10, FlxG.width, "Majin");
+		else charText = new FlxText(30 , 10, FlxG.width, "???");
+		charText.setFormat("Sonic CD Menu Font Regular", 36, FlxColor.WHITE, CENTER);
+		charText.y -= 10;
+		charText.x -= 23;
 		add(charText);
 
 		  ////// LOADING SHIT FOR THE BEGINNING //////// 
-			boxgrp.forEach(function(sprite:FlxSprite) 
+			boxgrp.forEach(function(sprite:FlxSprite)
 			{
-				if (sprite.ID == curSelected - 1 || sprite.ID == curSelected + 1) 
+				if (sprite.ID == curSelected - 1 || sprite.ID == curSelected + 1)
 				{
-					var diff = curSelected - sprite.ID; 
-					trace(diff, sprite.ID, curSelected); 
-					FlxTween.tween(sprite, {alpha: 0.5}, 0.2); 
-					FlxTween.tween(sprite, {"scale.x": 1, "scale.y": 1}, 0.2, {ease: FlxEase.expoOut}); 
+					var diff = curSelected - sprite.ID;
+					trace(diff, sprite.ID, curSelected);
+					FlxTween.tween(sprite, {alpha: 0.5}, 0.2);
+					FlxTween.tween(sprite, {"scale.x": 1, "scale.y": 1}, 0.2, {ease: FlxEase.expoOut});
 				}
 				else 
 				{
-					FlxTween.tween(sprite, {alpha: 1}, 0.2); 
-					FlxTween.tween(sprite, {"scale.x": 1.25, "scale.y": 1.25}, 0.2, {ease: FlxEase.expoOut}); 
+					FlxTween.tween(sprite, {alpha: 1}, 0.2);
+					FlxTween.tween(sprite, {"scale.x": 0.7, "scale.y": 0.7}, 0.2, {ease: FlxEase.expoOut});
 				}
-			}); 
-			for (i in 0...CharSongList.getSongsByChar(charArray[curSelected]).length) 
+			});
+			for (i in 0...CharSongList.getSongsByChar(charArray[curSelected]).length)
 			{
-				var text:FlxText; 
-				if (charUnlocked.contains(charArray[curSelected])) text = new FlxText(350, FlxG.height / 2 - 30 * CharSongList.getSongsByChar(charArray[curSelected]).length +  i *  30 * CharSongList.getSongsByChar(charArray[curSelected]).length, FlxG.width, StringTools.replace(CharSongList.getSongsByChar(charArray[curSelected])[i], "-", " ")); 
-				else text = new FlxText(350, FlxG.height / 2 - 30 * CharSongList.getSongsByChar(charArray[curSelected]).length +  i *  30 * CharSongList.getSongsByChar(charArray[curSelected]).length, FlxG.width, "???"); 
-				text.setFormat("Sonic CD Menu Font Regular", 36, 0xFFFFFFFF, CENTER); 
-				text.ID = i; 
-				textgrp.add(text); 
+				var text:FlxText;
+				if (charUnlocked.contains(charArray[curSelected]))text = new FlxText(350, FlxG.height / 2 - 30 * CharSongList.getSongsByChar(charArray[curSelected]).length +  i *  30 * CharSongList.getSongsByChar(charArray[curSelected]).length, FlxG.width, StringTools.replace(CharSongList.getSongsByChar(charArray[curSelected])[i], "-", " "));
+				else text = new FlxText(350, FlxG.height / 2 - 30 * CharSongList.getSongsByChar(charArray[curSelected]).length +  i *  30 * CharSongList.getSongsByChar(charArray[curSelected]).length, FlxG.width, "???");
+				text.setFormat("Sonic CD Menu Font Regular", 36, 0xFFFFFFFF, CENTER);
+				text.ID = i;
+				textgrp.add(text);
 			}
 
 		// JUST DOIN THIS SHIT FOR TESTING!!!
@@ -223,7 +224,7 @@ class FreeplayState extends MusicBeatState
 		super.create();
 	}
 
-	override function closeSubState() {
+	override function closeSubState(){
 		changeSelection(0, false);
 		persistentUpdate = true;
 		super.closeSubState();
@@ -250,7 +251,7 @@ class FreeplayState extends MusicBeatState
 		var accepted = controls.ACCEPT;
 		
 		var shiftMult:Int = 1;
-		if (cdman) {
+		if (cdman){
 			if (upP)
 			{
 				changeSelection(-shiftMult);
@@ -265,13 +266,13 @@ class FreeplayState extends MusicBeatState
 		
 		if(controls.UI_DOWN || controls.UI_UP)
 		{
-			var checkLastHold:Int = Math.floor((holdTime - 0.5) * 10);
+			var checkLastHold:Int = Math.floor((holdTime - 0.5)* 10);
 			holdTime += elapsed;
-			var checkNewHold:Int = Math.floor((holdTime - 0.5) * 10);
+			var checkNewHold:Int = Math.floor((holdTime - 0.5)* 10);
 		
 			if(holdTime > 0.5 && checkNewHold - checkLastHold > 0)
 			{
-				changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
+				changeSelection((checkNewHold - checkLastHold)* (controls.UI_UP ? -shiftMult : shiftMult));
 				//changeDiff();
 			}
 		}
@@ -280,67 +281,93 @@ class FreeplayState extends MusicBeatState
 			persistentUpdate = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			FlxG.log.add('lmao');
-			if (!selecting) MusicBeatState.switchState(new MainMenuState()); 
+			if (!selecting)MusicBeatState.switchState(new MainMenuState());
 			else 
 			{
-				scoreText.text = ""; 
-				curSongSelected = 0; 
-				selecting = false; 
-				textgrp.forEach(function(text:FlxText) 
+				scoreText.text = "";
+				curSongSelected = 0;
+				selecting = false;
+				textgrp.forEach(function(text:FlxText)
 				{
-					FlxTween.cancelTweensOf(text); 
-					text.alpha = 1; 
-				}); 
+					FlxTween.cancelTweensOf(text);
+					text.alpha = 1;
+				});
 			}
 		}
-			if (accepted && cdman && selecting) 
+			if (accepted && cdman && selecting)
 			{
-				if (charUnlocked.contains(charArray[curSelected])) 
+				if (charUnlocked.contains(charArray[curSelected]))
 				{
-					cdman = false; 
+					cdman = false;
   
-					var songArray:Array<String> = CharSongList.getSongsByChar(charArray[curSelected]); 
+					var songArray:Array<String> = CharSongList.getSongsByChar(charArray[curSelected]);
   
-					PlayState.SONG = Song.loadFromJson(songArray[curSongSelected].toLowerCase() + '-hard', songArray[curSongSelected].toLowerCase()); 
-					PlayState.isStoryMode = false; 
-					PlayState.storyDifficulty = 2; 
-					PlayState.storyWeek = 1; 
-					FlxG.sound.play(Paths.sound('confirmMenu')); 
+					PlayState.SONG = Song.loadFromJson(songArray[curSongSelected].toLowerCase()+ '-hard', songArray[curSongSelected].toLowerCase());
+					PlayState.isStoryMode = false;
+					PlayState.storyDifficulty = 2;
+					PlayState.storyWeek = 1;
+					FlxG.sound.play(Paths.sound('confirmMenu'));
   
-					// PlayStateChangeables.nocheese = false; 
-						FlxTween.tween(whiteshit, {alpha: 1}, 0.4); 
-						FlxTransitionableState.skipNextTransIn = true; 
-						FlxTransitionableState.skipNextTransOut = true; 
-						new FlxTimer().start(0.8, function(tmr:FlxTimer) 
+					// PlayStateChangeables.nocheese = false;
+						FlxTween.tween(whiteshit, {alpha: 1}, 0.4);
+						FlxTransitionableState.skipNextTransIn = true;
+						FlxTransitionableState.skipNextTransOut = true;
+						new FlxTimer().start(0.8, function(tmr:FlxTimer)
 						{
-							LoadingState.loadAndSwitchState(new PlayState()); 
-						}); 
-					}
-				}
-				else 
-				{
-					cdman = false; 
-					FlxG.sound.play(Paths.sound('deniedMOMENT'), 1, false, null, false, function() 
-					{
-						cdman = true; 
-					}); 
-				}
-			if (accepted && cdman && !selecting) 
-			{
-				FlxG.sound.play(Paths.sound('scrollMenu'), 0.4); 
-				selecting = true; 
-				if (textgrp.members != null) 
-				{
-					textgrp.forEach(function(text:FlxText) 
-					{
-						FlxTween.cancelTweensOf(text); 
-						text.alpha = 1; 
-						if (text.ID == curSongSelected) 
+							LoadingState.loadAndSwitchState(new PlayState());
+						});
+
+						switch(songArray[curSongSelected])
 						{
-							scoreText.text = "Score: " + Highscore.getScore(CharSongList.getSongsByChar(charArray[curSelected])[curSongSelected], 2); 
-							FlxTween.tween(text, {alpha: 0.5}, 0.5, {ease: FlxEase.expoOut, type: FlxTween.PINGPONG}); 
+							case 'prey':
+								PlayState.SONG = Song.loadFromJson('Prey-hard', 'prey');
+									PlayState.isStoryMode = false;
+								PlayState.storyDifficulty = 2;
+								PlayState.storyWeek = 1;
+								FlxG.sound.play(Paths.sound('confirmMenu'));
+	  
+							// PlayStateChangeables.nocheese = false;
+								FlxTween.tween(whiteshit, {alpha: 1}, 0.4);
+								FlxTransitionableState.skipNextTransIn = true;
+								FlxTransitionableState.skipNextTransOut = true;
+								new FlxTimer().start(0.8, function(tmr:FlxTimer)
+								{
+									LoadingState.loadAndSwitchState(new PlayState());
+								});
+							default:
+								PlayState.SONG = Song.loadFromJson(songArray[curSongSelected].toLowerCase()+ '-hard', songArray[curSongSelected].toLowerCase());
+								PlayState.isStoryMode = false;
+								PlayState.storyDifficulty = 2;
+								PlayState.storyWeek = 1;
+								FlxG.sound.play(Paths.sound('confirmMenu'));
+		  
+								// PlayStateChangeables.nocheese = false;
+									FlxTween.tween(whiteshit, {alpha: 1}, 0.4);
+								FlxTransitionableState.skipNextTransIn = true;
+								FlxTransitionableState.skipNextTransOut = true;
+								new FlxTimer().start(0.8, function(tmr:FlxTimer)
+								{
+									LoadingState.loadAndSwitchState(new PlayState());
+								});
 						}
-					}); 
+				}
+			}
+			if (accepted && cdman && !selecting)
+			{
+				FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+				selecting = true;
+				if (textgrp.members != null)
+				{
+					textgrp.forEach(function(text:FlxText)
+					{
+						FlxTween.cancelTweensOf(text);
+						text.alpha = 1;
+						if (text.ID == curSongSelected)
+						{
+							scoreText.text = "Score: " + Highscore.getScore(CharSongList.getSongsByChar(charArray[curSelected])[curSongSelected], 2);
+							FlxTween.tween(text, {alpha: 0.5}, 0.5, {ease: FlxEase.expoOut, type: FlxTween.PINGPONG});
+						}
+					});
 				}
 			}
 			else if(space)
@@ -366,8 +393,8 @@ class FreeplayState extends MusicBeatState
 		}
 		super.update(elapsed);
 	}
-	public static function destroyFreeplayVocals() {
-		if(vocals != null) {
+	public static function destroyFreeplayVocals(){
+		if(vocals != null){
 			vocals.stop();
 			vocals.destroy();
 		}
@@ -375,70 +402,70 @@ class FreeplayState extends MusicBeatState
 	}
 	function changeSelection(change:Int = 0, playSound:Bool = true)
 	{
-		if (!selecting) 
+		if (!selecting)
 		{
-			if (change == 1 && curSelected != charArray.length - 1) 
+			if (change == 1 && curSelected != charArray.length - 1)
 			{
 				cdman = false;
 				FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-				FlxTween.tween(boxgrp ,{y: boxgrp.y - 415}, 0.2, {ease: FlxEase.expoOut, onComplete: function(sus:FlxTween) 
+				FlxTween.tween(boxgrp ,{y: boxgrp.y - 415}, 0.2, {ease: FlxEase.expoOut, onComplete: function(sus:FlxTween)
 				{
 					cdman = true;
 				}});
 			}
-			else if (change == -1 && curSelected != 0) 
+			else if (change == -1 && curSelected != 0)
 			{
 				cdman = false;
 				FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-				FlxTween.tween(boxgrp ,{y: boxgrp.y + 415}, 0.2, {ease: FlxEase.expoOut, onComplete: function(sus:FlxTween) 
+				FlxTween.tween(boxgrp ,{y: boxgrp.y + 415}, 0.2, {ease: FlxEase.expoOut, onComplete: function(sus:FlxTween)
 					{
 						cdman = true;
 					}});
 			}
-			if ((change == 1 && curSelected != charArray.length - 1) || (change == -1 && curSelected != 0)) // This is a. 
+			if ((change == 1 && curSelected != charArray.length - 1)|| (change == -1 && curSelected != 0))// This is a. 
 			{
-				if (textgrp.members != null) 
+				if (textgrp.members != null)
 				{
-					textgrp.forEach(function(text:FlxText) 
+					textgrp.forEach(function(text:FlxText)
 					{
 						text.destroy();
 					});
 				}
 				curSelected = curSelected + change;
-				boxgrp.forEach(function(sprite:FlxSprite) 
+				boxgrp.forEach(function(sprite:FlxSprite)
 				{
-					if (sprite.ID == curSelected) 
+					if (sprite.ID == curSelected)
 					{
 						FlxTween.tween(sprite, {alpha: 1}, 0.2);
-						FlxTween.tween(sprite, {"scale.x": 1.18, "scale.y": 1.18}, 0.2, {ease: FlxEase.expoOut});
+						FlxTween.tween(sprite, {"scale.x": 1, "scale.y": 1}, 0.2, {ease: FlxEase.expoOut});
 					}
 					else 
 					{
 						FlxTween.tween(sprite, {alpha: 0.5}, 0.2);
-						FlxTween.tween(sprite, {"scale.x": 1, "scale.y": 1}, 0.2, {ease: FlxEase.expoOut});
+						FlxTween.tween(sprite, {"scale.x": 0.7, "scale.y": 0.7}, 0.2, {ease: FlxEase.expoOut});
 					}
 				});
 				for (i in 0...CharSongList.getSongsByChar(charArray[curSelected]).length)
 				{
 					var text:FlxText;
-					if (charUnlocked.contains(charArray[curSelected])) text = new FlxText(350, FlxG.height / 2 - 30 * CharSongList.getSongsByChar(charArray[curSelected]).length +  i *  30 * CharSongList.getSongsByChar(charArray[curSelected]).length, FlxG.width, StringTools.replace(CharSongList.getSongsByChar(charArray[curSelected])[i], "-", " "));
+					if (charUnlocked.contains(charArray[curSelected]))text = new FlxText(350, FlxG.height / 2 - 30 * CharSongList.getSongsByChar(charArray[curSelected]).length +  i *  30 * CharSongList.getSongsByChar(charArray[curSelected]).length, FlxG.width, StringTools.replace(CharSongList.getSongsByChar(charArray[curSelected])[i], "-", " "));
 					else text = new FlxText(350, FlxG.height / 2 - 30 * CharSongList.getSongsByChar(charArray[curSelected]).length +  i *  30 * CharSongList.getSongsByChar(charArray[curSelected]).length, FlxG.width, "???");
 					text.setFormat("Sonic CD Menu Font Regular", 36, 0xFFFFFFFF, CENTER);
 					text.ID = i;
 					textgrp.add(text);
 				}
-				if (charUnlocked.contains(charArray[curSelected])) charText.text = charArray[curSelected];
+				if (charUnlocked.contains(charArray[curSelected]))charText.text = charArray[curSelected];
 				else charText.text = '???';
-				boxgrp.forEach(function(thing:FlxSprite) 
+				boxgrp.forEach(function(thing:FlxSprite)
 				{
-					if (thing.ID == curSelected && thing.toString() == "char")  
+					if (thing.ID == curSelected && thing.toString()== "char") 
 					{
-						switch(charArray[curSelected]) 
+						/*switch(charArray[curSelected])
 						{
 							case "hog": 
-							if (curSongSelected == 1) thing.loadGraphic(Paths.image('fpstuff/scorched'));
-							else thing.loadGraphic(Paths.image('fpstuff/hog'));
-							default: thing.loadGraphic(Paths.image('fpstuff/' + charArray[curSelected]));
+							if (curSongSelected == 1)thing.loadGraphic(Paths.image('fpstuff/scorched'));
+							else thing.loadGraphic(Paths.image('fpstuff/hog'));*/
+							thing.loadGraphic(Paths.image('fpstuff/' + charArray[curSelected]));
 						}
 					}
 				});
@@ -451,27 +478,27 @@ class FreeplayState extends MusicBeatState
 				if(nextSelected>=songArray.length)nextSelected=0;
 				if (curSongSelected!=nextSelected)
 				{
-					FlxG.sound.play(Paths.sound('scrollMenu'), 0.4); 
-					curSongSelected += change; 
-					if (textgrp.members != null) 
+					FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+					curSongSelected += change;
+					if (textgrp.members != null)
 					{
-						textgrp.forEach(function(text:FlxText) 
+						textgrp.forEach(function(text:FlxText)
 						{
-							FlxTween.cancelTweensOf(text); 
-							text.alpha = 1; 
-							if (text.ID == curSongSelected) 
+							FlxTween.cancelTweensOf(text);
+							text.alpha = 1;
+							if (text.ID == curSongSelected)
 							{
-								scoreText.text = "Score: " + Highscore.getScore(songArray[curSongSelected], 2); 
-								FlxTween.tween(text, {alpha: 0.5}, 0.5, {ease: FlxEase.expoOut, type: FlxTween.PINGPONG}); 
+								scoreText.text = "Score: " + Highscore.getScore(songArray[curSongSelected], 2);
+								FlxTween.tween(text, {alpha: 0.5}, 0.5, {ease: FlxEase.expoOut, type: FlxTween.PINGPONG});
 								}
-						}); 
+						});
 					}
 				}
 			}
 		}
 
-		// selector.y = (70 * curSelected) + 30;
+		// selector.y = (70 * curSelected)+ 30;
 
-		var bullShit:Int = 0; //stupid shit
+		var bullShit:Int = 0;//stupid shit
 	}
 }
