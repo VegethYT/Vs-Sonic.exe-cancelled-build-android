@@ -24,18 +24,13 @@ class CharSongList
 	];*/ 
 
 	public static var data:Map<String,Array<String>> = [ 
-		"majin" => ["endless"], 
-		"lord x" => ["cycles"], 
-		"tails doll" => ["sunshine", "soulless"], 
-		"fleetway" => ["chaos"], 
-		"fatalerror" => ["fatality"], 
-		"chaotix" => ["my-horizon", "our-horizon"], 
-		"curse" => ["malediction"], 
-		"starved" => ["prey", "fight-or-flight"], 
-		"sl4sh" => ["b4cksl4sh"], 
-		"xterion" => ["substantial", "digitalized"], 
+		"majin" => ["endless"],
+		"lord x" => ["cycles"],
+		"tails doll" => ["sunshine", "soulless"],
+		"fleetway" => ["chaos"],
+		"fatalerror" => ["fatality"],
+		"starved" => ["prey", "fight-or-flight"],
 		"needlemouse" => ["round-a-bout"], 
-		"hog" => ["hedge", "manual-blast"], 
 		"sunky" => ["milk"], 
 		"sanic" => ["too-fest"], 
 		"coldsteel" => ["personel"] 
@@ -47,13 +42,8 @@ class CharSongList
 		"tails doll", 
 		"fleetway", 
 		"fatalerror", 
-		"chaotix", 
-		"curse", 
 		"starved", 
-		"sl4sh", 
-		"xterion", 
 		"needlemouse", 
-		"hog", 
 		"sunky", 
 		"sanic", 
 		"coldsteel" 
